@@ -135,7 +135,7 @@ SAMPLE_SIGNATURE_SUMMARY = {
 }
 
 
-class TestRobotsTxt(object):
+class TestRobotsTxt:
     def test_robots_txt(self, settings, client):
         settings.ENGAGE_ROBOTS = True
         url = "/robots.txt"
@@ -154,7 +154,7 @@ class TestRobotsTxt(object):
         assert "Disallow: /" in smart_text(response.content)
 
 
-class TestFavicon(object):
+class TestFavicon:
     def test_favicon(self, client):
         response = client.get("/favicon.ico")
         assert response.status_code == 200
@@ -166,7 +166,7 @@ class TestFavicon(object):
         assert response["Content-Type"] in expected
 
 
-class Test500(object):
+class Test500:
     def test_html(self):
         root_urlconf = __import__(
             settings.ROOT_URLCONF, globals(), locals(), ["urls"], 0
@@ -219,7 +219,7 @@ class Test500(object):
             assert result["query_string"] is None
 
 
-class Test404(object):
+class Test404:
     def test_handler404(self, client):
         response = client.get("/fillbert/mcpicklepants")
         assert response.status_code == 404
@@ -237,7 +237,7 @@ class Test404(object):
         assert result["query_string"] == "foo=bar"
 
 
-class TestContributeJson(object):
+class TestContributeJson:
     def test_view(self, client):
         response = client.get("/contribute.json")
         assert response.status_code == 200
@@ -426,7 +426,7 @@ class TestViews(BaseTestViews):
         assert _SAMPLE_META["Email"] not in content
         assert _SAMPLE_META["URL"] not in content
         assert (
-            "You need to be signed in to download raw crash data and minidump files."
+            "You need to be signed in and have access to protected data to see this."
             in content
         )
         # Should not be able to see sensitive key from stackwalker JSON
