@@ -2,10 +2,10 @@
 *.py[co]
 *.sw[po]
 *.log
-breakpad/
-breakpad.tar.gz
-depot_tools/
-stackwalk/
+#breakpad/
+#breakpad.tar.gz
+#depot_tools/
+#stackwalk/
 exploitable/
 *~
 coverage.xml
